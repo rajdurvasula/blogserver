@@ -11,7 +11,7 @@
 	<groupId>com.example.blogapp</groupId>
 	<artifactId>blogserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>blogserver</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
