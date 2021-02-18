@@ -20,15 +20,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-  # mariadb root password
-  mariadb_root_pwd: 'l55Wl06g121my7870g3z9092'
-  # app db user
-  app_db_user: 'appuser'
-  # app db password
-  app_db_pwd: 'ek470oJ05dj057465137lh00'
-  # app db name
-  app_db_name: 'blog_db'
-
 stages:
 - stage: setup_mariadb
   displayName: Setup MariaDB Database
@@ -41,14 +32,14 @@ stages:
     - script: |
         yum -y install mariadb-server mariadb
         systemctl enable mariadb --now
-        mysqladmin -u root password $(mariadb_root_pwd)
+        mysqladmin -u root password $(MARIADB_ROOT_PWD)
         cat <<EOT > /tmp/setup_app_db.sql
-        create database blog_db;
-        create user '$(app_db_user)'@localhost identified by '$(app_db_pwd)';
-        grant all privileges on $(app_db_name).* to '$(app_db_user)'@localhost;
+        create database $(APP_DB_NAME);
+        create user '$(APP_DB_USE)'@localhost identified by '$(APP_DB_PWD)';
+        grant all privileges on $(APP_DB_NAME).* to '$(APP_DB_USER)'@localhost;
         flush privileges;
         EOT
-        mysql -u root --password='$(mariadb_root_pwd)' < /tmp/setup_app_db.sql
+        mysql -u root --password='$(MARIADB_ROOT_PWD)' < /tmp/setup_app_db.sql
 - stage: Build
   displayName: Build stage
   jobs:
