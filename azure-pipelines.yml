@@ -21,13 +21,13 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # mariadb root password
-  mariadb_root_pwd = 'l55Wl06g121my7870g3z9092'
+  mariadb_root_pwd: 'l55Wl06g121my7870g3z9092'
   # app db user
-  app_db_user = 'appuser'
+  app_db_user: 'appuser'
   # app db password
-  app_db_pwd = 'ek470oJ05dj057465137lh00'
+  app_db_pwd: 'ek470oJ05dj057465137lh00'
   # app db name
-  app_db_name = 'blog_db'
+  app_db_name: 'blog_db'
 
 stages:
 - stage: setup_mariadb
