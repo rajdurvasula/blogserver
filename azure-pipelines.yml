@@ -18,7 +18,7 @@ variables:
   environmentName: 'test'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'centos-latest'
 
 stages:
 - stage: setup_mariadb
