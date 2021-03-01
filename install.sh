@@ -26,7 +26,9 @@ mysqladmin -u root password "${MYSQL_ROOT_PASSWORD}"
 systemctl restart mariadb
 # secure mysql
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "alter user 'root'@'localhost' identified by '${MYSQL_ROOT_PASSWORD}'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User='root' and Host not in ('localhost','127.0.0.1','::1')"
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User='root' and Host != 'localhost'"
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User='root' and Host != '127.0.0.1'"
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User='root' and Host != '::1'"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User=''"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.db where Db='test' or Db='test\_%'"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "flush privileges"
