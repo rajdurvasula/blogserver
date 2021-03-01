@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $# -ne 2 ]; then
-	echo "Usage: ./install.sh MYSQL_ROOT_PASSWORD MYSQL_APPUSER_PASSWORD"
+	echo "Usage: ./install_rhel82.sh MYSQL_ROOT_PASSWORD MYSQL_APPUSER_PASSWORD"
 	exit 0
 fi
 MYSQL_ROOT_PASSWORD=$1
