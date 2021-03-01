@@ -7,20 +7,6 @@ MYSQL_ROOT_PASSWORD=$1
 MYSQL_APPUSER_PASSWORD=$2
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
-# overwrite invalid repo entries
-echo "[rhui-microsoft-azure-rhel7]" > /etc/yum.repos.d/rh-cloud.repo
-echo "name=Microsoft Azure RPMs for Red Hat Enterprise Linux 7" >> /etc/yum.repos.d/rh-cloud.repo
-echo "baseurl=https://rhui-1.microsoft.com/pulp/repos/microsoft-azure-rhel7" >> /etc/yum.repos.d/rh-cloud.repo
-echo "https://rhui-2.microsoft.com/pulp/repos/microsoft-azure-rhel7" >> /etc/yum.repos.d/rh-cloud.repo
-echo "https://rhui-3.microsoft.com/pulp/repos/microsoft-azure-rhel7" >> /etc/yum.repos.d/rh-cloud.repo 
-echo "enabled=1" >> /etc/yum.repos.d/rh-cloud.repo
-echo "gpgcheck=1" >> /etc/yum.repos.d/rh-cloud.repo
-echo "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-microsoft-azure-release" >> /etc/yum.repos.d/rh-cloud.repo
-echo "sslverify=1" >> /etc/yum.repos.d/rh-cloud.repo
-yum clean all
-wait $!
-yum makecache fast
-wait $!
 yum -y update
 wait $!
 yum -y install java-1.8.0-openjdk-devel maven
