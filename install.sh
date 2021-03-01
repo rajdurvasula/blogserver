@@ -8,7 +8,7 @@ MYSQL_APPUSER_PASSWORD=$2
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 # overwrite invalid repo entries
-echo "[rhui-microsoft-azure-rhel7] > /etc/yum.repos.d/rh-cloud.repo
+echo "[rhui-microsoft-azure-rhel7]" > /etc/yum.repos.d/rh-cloud.repo
 echo "name=Microsoft Azure RPMs for Red Hat Enterprise Linux 7" >> /etc/yum.repos.d/rh-cloud.repo
 echo "baseurl=https://rhui-1.microsoft.com/pulp/repos/microsoft-azure-rhel7" >> /etc/yum.repos.d/rh-cloud.repo
 echo "https://rhui-2.microsoft.com/pulp/repos/microsoft-azure-rhel7" >> /etc/yum.repos.d/rh-cloud.repo
