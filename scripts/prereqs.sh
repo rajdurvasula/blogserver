@@ -8,7 +8,7 @@ EOT
 # overwrite invalid repo entries
 cat scripts/azure_yum_repo.txt > /etc/yum.repos.d/rh-cloud.repo
 yum clean all
-yum -y install git
+yum -y install java-1.8.0-openjdk-devel maven
 yum install -y mariadb-server mariadb
 systemctl start mariadb
 # set root password
