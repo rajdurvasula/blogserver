@@ -18,6 +18,8 @@ echo "gpgcheck=1" >> /etc/yum.repos.d/rh-cloud.repo
 echo "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-microsoft-azure-release" >> /etc/yum.repos.d/rh-cloud.repo
 echo "sslverify=1" >> /etc/yum.repos.d/rh-cloud.repo
 yum clean all
+yum makecache fast
+yum -y update
 yum -y install java-1.8.0-openjdk-devel maven
 yum install -y mariadb-server mariadb
 systemctl start mariadb
