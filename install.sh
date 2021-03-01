@@ -25,7 +25,7 @@ systemctl start mariadb
 mysqladmin -u root password "${MYSQL_ROOT_PASSWORD}"
 systemctl restart mariadb
 # secure mysql
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "update mysql.user set Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') where User='root'"
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "update mysql.user set authentication_string = PASSWORD('${MYSQL_ROOT_PASSWORD}') where User='root'"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User='root' and Host not in ('localhost','127.0.0.1','::1')"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User=''"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.db where Db='test' or Db='test\_%'"
