@@ -8,8 +8,8 @@ MYSQL_APPUSER_PASSWORD=$2
 echo "export LC_ALL=\"en_US.UTF-8\"" > /etc/profile.d/locale.sh
 echo "export LC_CTYPE=\"en_US.UTF-8\"" >> /etc/profile.d/locale.sh
 # As per Azure documentation
-yum --disablerepo='*' remove 'rhui-azure-rhel7'
-yum --config='https://rhelimage.blob.core.windows.net/repositories/rhui-microsoft-azure-rhel7-eus.config' install 'rhui-azure-rhel7-eus'
+yum -y --disablerepo='*' remove 'rhui-azure-rhel7'
+yum -y --config='https://rhelimage.blob.core.windows.net/repositories/rhui-microsoft-azure-rhel7-eus.config' install 'rhui-azure-rhel7-eus'
 echo $(. /etc/os-release && echo $VERSION_ID) > /etc/yum/vars/releasever
 yum -y install git java-1.8.0-openjdk-devel maven
 yum install -y mariadb-server mariadb
