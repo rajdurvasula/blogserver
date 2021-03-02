@@ -1,4 +1,10 @@
 #!/bin/bash
+if [ $# -ne 2 ]; then
+  echo "Usage: ./prereqs_rhel73.sh MYSQL_ROOT_PASSWORD MYSQL_APPUSER_PASSWORD"
+  exit 0
+fi
+MYSQL_ROOT_PASSWORD=$1
+MYSQL_APPUSER_PASSWORD=$2
 echo "export LC_ALL=\"en_US.UTF-8\"" > /etc/profile.d/locale.sh
 echo "export LC_CTYPE=\"en_US.UTF-8\"" >> /etc/profile.d/locale.sh
 # As per Azure documentation
