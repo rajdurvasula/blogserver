@@ -15,15 +15,19 @@ yum install git java-1.8.0-openjdk-devel maven -y
 yum install mariadb-server mariadb -y
 systemctl start mariadb
 # secure mysql
-mysql -u root -p"" -e "update mysql.user set Password=PASSWORD\('${MYSQL_ROOT_PASSWORD}'\) where User='root'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User='root' and Host not in \('localhost','127.0.0.1','::1'\)"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.user where User=''"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.db where Db='test' or Db='test\_%'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "flush privileges"
+mysql -u root <<_EOF_
+update mysql.user set Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') where User='root';
+delete from mysql.user where User='root' and Host not in ('localhost','127.0.0.1','::1');
+delete from mysql.user where User='';
+delete from mysql.db where Db='test' or Db='test\_%';
+flush privileges;
+_EOF_
 # create blog_db and user
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "create database blog_db"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "create user 'appuser'@'localhost' identified by '${MYSQL_APPUSER_PASSWORD}'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "grant all privileges on blog_db.* to 'appuser'@'localhost'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "grant all privileges on blog_db.* to 'appuser'@'%' identified by '${MYSQL_APPUSER_PASSWORD}'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "flush privileges"
+mysql -u root -p ${MYSQL_ROOT_PASSWORD} <<_EOF_
+create database blog_db;
+create user 'appuser'@'localhost' identified by '${MYSQL_APPUSER_PASSWORD}';
+grant all privileges on blog_db.* to 'appuser'@'localhost';
+grant all privileges on blog_db.* to 'appuser'@'%' identified by '${MYSQL_APPUSER_PASSWORD}';
+flush privileges;
+_EOF_
 
