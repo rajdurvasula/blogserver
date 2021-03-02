@@ -22,8 +22,8 @@ mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "delete from mysql.db where Db='test' 
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "flush privileges"
 # create blog_db and user
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "create database blog_db"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "create user 'appuser'@localhost identified by '${MYSQL_APPUSER_PASSWORD}'"
-mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "grant all privileges on blog_db.* to 'appuser'@localhost"
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "create user 'appuser'@'localhost' identified by '${MYSQL_APPUSER_PASSWORD}'"
+mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "grant all privileges on blog_db.* to 'appuser'@'localhost'"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "grant all privileges on blog_db.* to 'appuser'@'%' identified by '${MYSQL_APPUSER_PASSWORD}'"
 mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "flush privileges"
 
