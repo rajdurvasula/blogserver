@@ -2,5 +2,5 @@
 yum -y install git vim
 git clone https://github.com/rajdurvasula/blogserver.git
 cd blogserver
-mvn -DskipTests clean package
-mvn spring-boot:run
+/opt/maven/bin/mvn -DskipTests clean package
+/opt/maven/bin/mvn spring-boot:run
