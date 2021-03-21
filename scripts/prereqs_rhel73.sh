@@ -20,6 +20,7 @@ cat <<_EOF_ > /etc/profile.d/maven.sh
 export M2_HOME=/opt/maven
 export PATH=$PATH:$M2_HOME/bin
 _EOF_
+echo "source /etc/profile.d/maven.sh" >> /etc/bashrc
 yum install mariadb-server mariadb -y
 systemctl start mariadb
 # secure mysql
