@@ -18,7 +18,7 @@ tar xzf apache-maven-3.6.3-bin.tar.gz -C /opt
 ln -s /opt/apache-maven-3.6.3 /opt/maven
 cat <<_EOF_ > /etc/profile.d/maven.sh
 export M2_HOME=/opt/maven
-export PATH=$PATH:$M2_HOME/bin
+export PATH=$PATH:/opt/maven/bin
 _EOF_
 echo "source /etc/profile.d/maven.sh" >> /etc/bashrc
 yum install mariadb-server mariadb -y
