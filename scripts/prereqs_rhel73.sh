@@ -14,7 +14,7 @@ echo $(. /etc/os-release && echo $VERSION_ID) > /etc/yum/vars/releasever
 yum install git java-1.8.0-openjdk-devel -y
 # Install Maven 3.1.0
 wget https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-tar xzf apache-maven-3.6.3-bin -C /opt
+tar xzf apache-maven-3.6.3-bin.tar.gz -C /opt
 ln -s /opt/apache-maven-3.6.3 /opt/maven
 cat <<_EOF_ > /etc/profile.d/maven.sh
 export M2_HOME=/opt/maven
