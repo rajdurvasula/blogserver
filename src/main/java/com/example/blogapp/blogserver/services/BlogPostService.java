@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service("blogPostService")
 public class BlogPostService
@@ -17,12 +19,14 @@ public class BlogPostService
     private BlogUserRepository blogUserRepository;
     @Autowired
     private BlogPostRepository blogPostRepository;
+    private Logger logger = LoggerFactory.getLogger("BlogPostService");
 
     public List<BlogPost> findAll() {
         return blogPostRepository.findAll();
     }
 
     public BlogPost findById(Long id) {
+        logger.info("Find BlogPost by Id: {0}", new Object[] { id });
         Optional<BlogPost> optionalPost = blogPostRepository.findById(id);
         if (optionalPost.isPresent())
             return (BlogPost) optionalPost.get();
@@ -30,6 +34,7 @@ public class BlogPostService
     }
 
     public List<BlogPost> findByBlogUser(Long userId) {
+        logger.info("Find BlogPost by BlogUser Id: {0}", new Object[] { userId });
         BlogUser blogUser = blogUserRepository.findById(userId).orElse(null);
         List<BlogPost> blogPosts = new ArrayList<BlogPost>();
         if (null != blogUser) {
@@ -39,6 +44,7 @@ public class BlogPostService
     }
 
     public BlogPost savePost(BlogPost blogPost) {
+        logger.info("Saving BlogPost ..");
         return blogPostRepository.save(blogPost);
     }
 
@@ -54,6 +60,7 @@ public class BlogPostService
             }
         }
         final BlogPost updPost = blogPostRepository.save(currPost);
+        logger.info("Updated BlogPost with Id: {0}", new Object[] { postId });
         return updPost;
     }
 
@@ -61,6 +68,7 @@ public class BlogPostService
         BlogPost currPost = blogPostRepository.findById(id).orElse(null);
         if (null != currPost) {
             blogPostRepository.delete(currPost);
+            logger.info("Deleted BlogPost with Id: {0}", new Object[] { id });
             return true;
         }
         return false;
