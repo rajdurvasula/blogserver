@@ -32,3 +32,5 @@ grant all privileges on blog_db.* to 'appuser'@'localhost';
 flush privileges;
 _EOF_
 
+# update application.poperties
+sed -i -e "s~APPUSER_PASSWORD~$MYSQL_APPUSER_PASSWORD~g" src/main/resources/application.properties
