@@ -1,0 +1,13 @@
+[Unit]
+Description=blogserver
+After=network-online.target,mariadb
+
+[Service]
+Type=simple
+WorkingDirectory=WORK_DIR
+ExecStart=/opt/maven/bin/mvn spring-boot:run
+ExecStop=curl -X POST http://`hostname -i`:8080/actuator/shutdown
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

@@ -5,6 +5,7 @@ if [ $# -ne 2 ]; then
 fi
 PROXY_HOST=$1
 PROXY_PORT=$2
+WORK_DIR=`pwd`
 wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
 tar xzf apache-maven-3.8.1-bin.tar.gz -C /opt/
 mv /opt/apache-maven-3.8.1 /opt/maven
@@ -15,4 +16,8 @@ if [ ! -d ~/.m2 ]; then
 fi
 cp settings.xml ~/.m2/
 /opt/maven/bin/mvn clean package -DskipTests 
-/opt/maven/bin/mvn spring-boot:run
+sed -i -e "s~WORK_DIR~$WORK_DIR~g" blogserver.service
+cp blogserver.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl start blogserver
+systemctl enable blogserver
