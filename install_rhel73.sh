@@ -9,7 +9,10 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 yum -y update
 wait $!
-yum -y install java-1.8.0-openjdk-devel maven
+yum -y install java-1.8.0-openjdk-devel
+wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+tar xzf apache-maven-3.8.1-bin.tar.gz -C /opt/
+mv /opt/apache-maven-3.8.1 /opt/maven
 wait $!
 yum install -y mariadb-server mariadb
 wait $!
