@@ -10,6 +10,7 @@ MYSQL_APPUSER_PASSWORD=$2
 yum install -y mariadb-server mariadb
 wait $!
 systemctl start mariadb
+systemctl enable mariadb
 
 # secure mysql
 mysql -u root <<_EOF_
