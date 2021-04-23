@@ -4,7 +4,6 @@ if [ $# -ne 2 ]; then
   exit 0
 fi
 WORK_DIR=/opt/blogserver
-mkdir -pv $WORK_DIR
 ./prereqs_rhel73.sh
 ./setup_db_schema.sh $1 $2
 if [ $# -eq 4 ]; then
