@@ -8,4 +8,6 @@ WORK_DIR=/opt/blogserver
 ./setup_db_schema.sh $1 $2
 if [ $# -eq 4 ]; then
   ./install_app.sh $3 $4
+else
+  ./install_app.sh
 fi
