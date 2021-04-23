@@ -14,12 +14,9 @@ if [ $# -eq 2 ]; then
   fi
   cp settings.xml ~/.m2/
 fi
-#wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
-#tar xzf apache-maven-3.8.1-bin.tar.gz -C /opt/
-#mv /opt/apache-maven-3.8.1 /opt/maven
+cd $WORK_DIR
 sed -i -e "s~WORK_DIR~$WORK_DIR~g" blogserver.service
 cp blogserver.service /etc/systemd/system/
-cd $WORK_DIR
 /opt/maven/bin/mvn clean package -DskipTests 
 systemctl daemon-reload
 systemctl start blogserver

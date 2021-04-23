@@ -1,6 +1,5 @@
 #!/bin/bash
 WORK_DIR=/opt/blogserver
-mkdir -pv $WORK_DIR
 echo "export LC_ALL=\"en_US.UTF-8\"" > /etc/environment
 echo "export LC_CTYPE=\"en_US.UTF-8\"" >> /etc/environment
 # As per Azure documentation
@@ -17,4 +16,5 @@ export M2_HOME=/opt/maven
 export PATH=$PATH:/opt/maven/bin
 _EOF_
 echo "source /etc/profile.d/maven.sh" >> /etc/bashrc
+# get application code
 git clone https://github.com/rajdurvasula/blogserver.git $WORK_DIR
