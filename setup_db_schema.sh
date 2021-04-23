@@ -3,15 +3,16 @@ if [ $# -ne 2 ]; then
   echo "Usage: ./setup_db.sh MYSQL_ROOT_PASSWORD MYSQL_APPUSER_PASSWORD"
   exit 0
 fi
+WORK_DIR=/opt/blogserver
 MYSQL_ROOT_PASSWORD=$1
 MYSQL_APPUSER_PASSWORD=$2
 # install java sdk
-yum -y install java-1.8.0-openjdk-devel
+#yum -y install java-1.8.0-openjdk-devel
 # download maven
-wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
-tar xzf apache-maven-3.8.1-bin.tar.gz -C /opt/
-mv /opt/apache-maven-3.8.1 /opt/maven
-wait $!
+#wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+#tar xzf apache-maven-3.8.1-bin.tar.gz -C /opt/
+#mv /opt/apache-maven-3.8.1 /opt/maven
+#wait $!
 # install mariadb
 yum install -y mariadb-server mariadb
 wait $!
@@ -33,4 +34,4 @@ flush privileges;
 _EOF_
 
 # update application.poperties
-sed -i -e "s~APPUSER_PASSWORD~$MYSQL_APPUSER_PASSWORD~g" src/main/resources/application.properties
+sed -i -e "s~APPUSER_PASSWORD~$MYSQL_APPUSER_PASSWORD~g" $WORK_DIR/src/main/resources/application.properties
