@@ -21,3 +21,5 @@ cp blogserver.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl start blogserver
 systemctl enable blogserver
+firewall-cmd --add-port 8080/tcp --permanent
+firewall-cmd --reload
