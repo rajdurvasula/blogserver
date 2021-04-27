@@ -11,7 +11,6 @@
 if [ ! -f /usr/bin/azcopy ]; then
   curl -L -o azcopy_linux_amd64_10.10.0.tar.gz https://aka.ms/downloadazcopy-v10-linux
   tar xzf azcopy_linux_amd64_10.10.0.tar.gz
-  chmod +x azcopy_linux_amd64_10.10.0/azcopy
   cp azcopy_linux_amd64_10.10.0/azcopy /usr/bin/
   rm -f azcopy_linux_amd64_10.10.0.tar.gz
   rm -rf azcopy_linux_amd64_10.10.0
